@@ -15,14 +15,15 @@
     <div class="categories">
       <button class="btn btn-primary" onclick="app.controllers.autosController.showAutos()">Autos</button>
       <button class="btn btn-primary" onclick="app.controllers.realEstateController.showHouses()">Real Estate</button>
-      <button class="btn btn-primary">Jobs</button>
+      <button class="btn btn-primary" onclick="app.controllers.jobsController.showJobs()">Jobs</button>
       <button class="btn btn-primary" onclick="app.controllers.autosController.startAddAuto()">Add Auto</button>
       <button class="btn btn-primary" onclick="app.controllers.realEstateController.startAddHouse()">Add Real Estate</button>
-      <button class="btn btn-primary">Add Job</button>
+      <button class="btn btn-primary" onclick="app.controllers.jobsController.startAddJob()">Add Job</button>
     </div>
 
     <div class="container">
       <div class="row" id="form">
+
       </div>
     </div>
     <div class="container">
@@ -30,10 +31,6 @@
         Choose a category to start buying stuff in
       </div>
     </div>
-
-
-
-
   </div>
 
 

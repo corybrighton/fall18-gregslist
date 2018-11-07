@@ -11,8 +11,8 @@ export default class RealestateController {
       template += `<div>
         <img src = "${house.img}">
         <h5>${house.price}</h5>
-        <p>bd:${house.bedrooms}<p>
-        <p>bt:${house.bathrooms}<p>
+        <p>bds:${house.bedrooms}<p>
+        <p>ba:${house.bathrooms}<p>
       </div>`
     });
     document.getElementById("main-content").innerHTML = template
