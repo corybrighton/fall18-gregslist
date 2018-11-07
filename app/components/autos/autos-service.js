@@ -11,6 +11,4 @@ export default class AutosService {
   getAutos() {
     return _autos
   }
-
-
 }
