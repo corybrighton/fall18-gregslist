@@ -21,6 +21,40 @@ export default class AutosController {
     })
     document.getElementById('main-content').innerHTML = template
   }
+  startAddAuto() {
+    document.getElementById("form").innerHTML =
+      `<form onsubmit="app.controllers.autosController.addAuto(event)">
+      <div class="form-group">
+        <label for="make">Make</label>
+        <input type="text" name="make" />
+      </div>
+      <div class="form-group">
+        <label for="model">Model:</label>
+        <input type="text" name="model" />
+      </div>
+      <div class="form-group">
+        <label for="year">Year:</label>
+        <input type="number" name="year" />
+      </div>
+      <div class="form-group">
+        <label for="miles">Mile:</label>
+        <input type="number" name="miles" />
+      </div>
+      <div class="form-group">
+        <label for="PRICE">Price:</label>
+        <input type="number" name="PRICE" />
+      </div>
+      <div class="form-group">
+        <label for="img">Image:</label>
+        <input type="url" name="img" />
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea type="text" name="description"></textarea>
+      </div>
+      <button type="submit">Add Auto</button>
+    </form>`
+  }
 
   addAuto(event) {
     event.preventDefault(); //prevents the page from reloading
@@ -37,6 +71,7 @@ export default class AutosController {
     _autosService.addAuto(formData)
     this.showAutos()
     form.reset()
+    document.getElementById("form").innerHTML = ``
   }
 
 }

@@ -14,47 +14,24 @@
   <div id="app">
     <div class="categories">
       <button class="btn btn-primary" onclick="app.controllers.autosController.showAutos()">Autos</button>
-      <button class="btn btn-primary">Real Estate</button>
+      <button class="btn btn-primary" onclick="app.controllers.realEstateController.showHouses()">Real Estate</button>
       <button class="btn btn-primary">Jobs</button>
+      <button class="btn btn-primary" onclick="app.controllers.autosController.startAddAuto()">Add Auto</button>
+      <button class="btn btn-primary" onclick="app.controllers.realEstateController.startAddHouse()">Add Real Estate</button>
+      <button class="btn btn-primary">Add Job</button>
     </div>
 
+    <div class="container">
+      <div class="row" id="form">
+      </div>
+    </div>
     <div class="container">
       <div class="row" id="main-content">
         Choose a category to start buying stuff in
       </div>
     </div>
 
-    <form onsubmit="app.controllers.autosController.addAuto(event)">
-      <div class="form-group">
-        <label for="make">Make</label>
-        <input type="text" name="make" />
-      </div>
-      <div class="form-group">
-        <label for="model">Model:</label>
-        <input type="text" name="model" />
-      </div>
-      <div class="form-group">
-        <label for="year">Year:</label>
-        <input type="number" name="year" />
-      </div>
-      <div class="form-group">
-        <label for="miles">Mile:</label>
-        <input type="number" name="miles" />
-      </div>
-      <div class="form-group">
-        <label for="PRICE">Price:</label>
-        <input type="number" name="PRICE" />
-      </div>
-      <div class="form-group">
-        <label for="img">Image:</label>
-        <input type="url" name="img" />
-      </div>
-      <div class="form-group">
-        <label for="description">Description:</label>
-        <textarea type="text" name="description"></textarea>
-      </div>
-      <button type="submit">Add Auto</button>
-    </form>
+
 
 
   </div>
