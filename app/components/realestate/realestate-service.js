@@ -1,16 +1,44 @@
 import RealEstate from "../../models/realestate.js";
 
-let realEstatePlaces = [
-  new RealEstate({ bedrooms: 5, bathrooms: 4, sqft: 1250, price: 250000, address: "123 abs", img: "http://placehold.it/200x200 " })
-]
+// @ts-ignore
+let _api = axios.create({
+  baseURL: "https://bcw-gregslist.herokuapp.com/api/houses"
+})
+let _realEstatePlaces = []
+
+function handleError(err) {
+  throw new Error(err)
+}
 
 export default class RealEstateService {
-  addHouse(formData) {
-    realEstatePlaces.push(new RealEstate(formData))
-
+  destroyHouse(id, showHouses) {
+    _api.delete(id)
+      .then(res => {
+        this.getHouses(showHouses)
+      })
+      .catch(handleError)
   }
-  gethouses() {
-    return JSON.parse(JSON.stringify(realEstatePlaces))
+  addHouse(formData, successFunc) {
+    if (!formData) { handleError }
+    if (typeof (successFunc) != "function") { handleError("House function Error") }
+
+    _api.post('', formData)
+      .then(res => { this.getHouses(successFunc) })
+      .catch(handleError)
+  }
+
+  getHouses(successFunc) {
+    if (typeof successFunc != 'function') { handleError("Need a function") }
+    _api.get('')
+      .then(res => {
+        _realEstatePlaces = res.data.data.map(house => new RealEstate(house))
+        successFunc()
+      })
+      .catch(handleError)
+  }
+
+  get houses() {
+    return _realEstatePlaces
   }
 
 }

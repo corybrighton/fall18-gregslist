@@ -3,15 +3,18 @@ import JobsService from "./jobsService.js";
 let _jobsService = new JobsService
 
 export default class JobsController {
+  startShowJobs() {
+    console.log('Work work work')
+    _jobsService.getJobs(this.showJobs)
+  }
   showJobs() {
-    console.log("new Jobs")
-    let jobs = _jobsService.getJobs()
-    let template = "<div class = 'd-flex flex-column'"
-    jobs.forEach(job => {
+    let template = ""
+    _jobsService.jobs.forEach(job => {
       template += `
-      <p>
-        <a href = "">${job.jobTitle} (${job.town})</a>
-      </p>`
+      
+      <div class = "col-12">
+        <a href = "">${job.jobTitle} (${job.company}) ${job.description}</a><i class="fa fa-fw fa-trash action muted" onclick="app.controllers.jobsController.destroyJob('${job._id}')"></i>
+      </div>`
     });
     document.getElementById("main-content").innerHTML = template
   }
@@ -23,8 +26,20 @@ export default class JobsController {
             <input type="text" name="jobTitle" />
           </div>
           <div class="form-group">
-            <label for="town">Town</label>
-            <input type="text" name="town" />
+            <label for="company">Company</label>
+            <input type="text" name="company" />
+          </div>
+          <div class="form-group">
+            <label for="hours">Hours</label>
+            <input type="number" name="hours" />
+          </div>
+          <div class="form-group">
+            <label for="rate">Rate</label>
+            <input type="number" name="rate" />
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="textfield" name="description" />
           </div>
           <button type="submit">Add Job</button>
         </form>`
@@ -35,11 +50,17 @@ export default class JobsController {
     let form = event.target
     let formData = {
       jobTitle: form.jobTitle.value,
-      town: form.town.value
+      company: form.company.value,
+      hours: form.hours.value,
+      rate: form.rate.value,
+      description: form.description.value
     }
-    _jobsService.addJob(formData)
-    this.showJobs()
+    _jobsService.addJob(formData, this.showJobs)
     form.reset()
     document.getElementById("form").innerHTML = ''
+  }
+
+  destroyJob(id) {
+    _jobsService.destroyJob(id, this.showJobs)
   }
 }
